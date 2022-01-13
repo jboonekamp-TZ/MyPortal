@@ -1,0 +1,10 @@
+.nav-container{
+    display: flex;
+    gap: 3em;
+    justify-content: end;
+    align-items: center;
+}
+
+.nav-btn{
+    
+}

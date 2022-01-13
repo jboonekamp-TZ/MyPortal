@@ -1,0 +1,13 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 5vh;
+}
+
+.register-input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}

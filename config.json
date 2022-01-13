@@ -1,0 +1,13 @@
+{
+    "host": {
+        "port": 3000
+    },
+    "sql": {
+        "username": "SQLUSER",
+        "password": "SQLPASSWORD"
+    },
+    "apps":{
+        "currentRegistry": ["Messenga"]
+    }
+
+}

@@ -1,10 +1,10 @@
 {
     "host": {
-        "port": 3000
+        "port": 3001
     },
-    "sql": {
-        "username": "SQLUSER",
-        "password": "SQLPASSWORD"
+    "mongodb": {
+        "username": "jboonekampwrite",
+        "password": "Xptsaffp1"
     },
     "apps":{
         "currentRegistry": ["Messenga"]

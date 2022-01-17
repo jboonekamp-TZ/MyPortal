@@ -3,7 +3,17 @@ module.exports = function(dependencies){
     const { express, ejs, path } = dependencies
 
     const appName = `Messenga`;
+
     const app = express();
+
+    var session = require('express-session');
+
+    app.use(session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: true }
+      }))
 
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, 'views'));
@@ -16,7 +26,18 @@ module.exports = function(dependencies){
         res.render(page, resObj);
     })
 
+    app.get('/home', (req, res) => {
+        let resObj = {}, page = "home";
+        resObj.Content = "home";
+        resObj.AppName = appName;
+
+        // render the page
+        // Client side we get the messages and render the object with the db attributes
+        res.render(page, resObj);
+    })
+
     app.get('/chat', (req, res, next) => {
+        console.log(req)
         let resObj = {}, page = "Home";
         resObj.Content = "chatWindow"
         resObj.AppName = appName;
@@ -24,63 +45,18 @@ module.exports = function(dependencies){
         res.render(page, resObj);
     })
 
-    app.all('/register', (req, res, next) => {
+    // app.post('/sendFiles', (req, res, next) => {
+    //     if(req.body)
+    // })
 
-        let resObj = {}, resType = "render", page = "Home", statCode;
+    // Global message board clearer event handler
+    setInterval(() => {
 
-        switch (req.method) {
-            case "GET":
-                
-                resObj.AppName = appName;
-                resObj.Content = "Register";
+        // Here we clear the global message db clear call
+        // await clearMessageBoard();
 
-                break;
-        
-            case "POST":
-            
-                break;
+    }, 24*60*60*1000)
 
-            
-            default:
-                break;
-
-        }
-
-        res.status(statCode || 200)[resType](page, resObj)
-    })
-
-    app.all('/login', (req, res, next) => {
-
-        let resObj = {}, resType = "render", page = "Home", statCode;
-
-        switch (req.method) {
-            case "GET":
-                
-                resObj.AppName = appName;
-                resObj.Content = "Login";
-
-                break;
-        
-            case "POST":
-            
-                break;
-
-            
-            default:
-                break;
-
-        }
-
-        res.status(statCode || 200)[resType](page, resObj)
-    })
-
-    app.post('/sendFiles', (req, res, next) => {
-
-    })
-
-    return {
-        app: app,
-        appName: appName
-    }
+    return app;
 
 }

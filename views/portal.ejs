@@ -8,5 +8,10 @@
 </head>
 <body>
     <h1>Welcome to the portal</h1>
+    <% if(Content === "Register"){ %>
+        <%- include('partials/userManagement/register') %>
+    <% }else if(Content === "Login"){ %>
+        <%- include('partials/userManagement/login') %>
+    <% } %>
 </body>
 </html>
